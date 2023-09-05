@@ -1,8 +1,10 @@
 import React from "react";
-import LargeHeader from "../largeHeader/largeHeader";
 import "./Main.css";
 import { data } from "./data";
 import Card from "../card/card";
+import LargeHeader from "../largeHeader/largeHeader";
+import Testimonials from "../testimonials/testimonial";
+import AboutUs from "../AboutUs/aboutus";
 
 function Main() {
   return (
@@ -18,8 +20,8 @@ function Main() {
           ))}
         </div>
       </div>
-      <div className="testimonials">this is the testimonials section</div>
-      <div className="about-section">This is the about section....</div>
+      <Testimonials />
+      <AboutUs />
     </main>
   );
 }
