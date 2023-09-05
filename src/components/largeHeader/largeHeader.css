@@ -1,0 +1,78 @@
+.large-header {
+  background-color: #495e57;
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+}
+
+.large-header .inner-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10rem;
+  position: relative;
+  margin: auto;
+}
+
+.large-header .title {
+  color: #f4ce14;
+  font-size: 3rem;
+  font-family: Markazi;
+  margin-top: 10px;
+}
+
+.large-header .section {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+}
+
+.large-header.section .state {
+  font-size: 2rem;
+  color: #fff;
+  font-family: "Karla";
+}
+
+.large-header.section .paragraph {
+  font-family: "Karla";
+  margin-top: 20px;
+  color: #fff;
+  line-height: 1.5;
+  font-size: 1.2rem;
+  max-width: 400px;
+}
+
+.large-header.section button {
+  background-color: #f4ce14;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 60px;
+  margin-top: 15px;
+  width: 150px;
+  border: none;
+  font-weight: bold;
+}
+
+.large-header .home-page-image {
+  position: absolute;
+  top: 0%;
+  right: 0rem;
+  padding-right: 20px;
+  object-fit: cover;
+}
+
+.large-header .home-page-image img {
+  max-height: 23rem;
+  width: 400px;
+  border-radius: 10px;
+}
+
+/* #F4CE14*/
+
+@media (max-width: 710px) {
+  .large-header .home-page-image img {
+    display: none;
+  }
+  .large-header {
+    width: 100vw;
+  }
+}
