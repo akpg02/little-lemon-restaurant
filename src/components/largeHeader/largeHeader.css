@@ -50,6 +50,12 @@
   width: 150px;
   border: none;
   font-weight: bold;
+  cursor: pointer;
+}
+
+.large-header.section button a {
+  text-decoration: none;
+  color: #2f234f;
 }
 
 .large-header .home-page-image {

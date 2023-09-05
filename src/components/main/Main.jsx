@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./Main.css";
 import { data } from "./data";
 import Card from "../card/card";
@@ -12,7 +13,10 @@ function Main() {
       <LargeHeader />
       <div className="specials">
         <section className="specials-heading">
-          <p>This weeks specials!</p> <button>Online Menu</button>
+          <p>This weeks specials!</p>{" "}
+          <button>
+            <NavLink to="/menu">Online Menu</NavLink>
+          </button>
         </section>
         <div className="allcard-container">
           {data.map((e) => (

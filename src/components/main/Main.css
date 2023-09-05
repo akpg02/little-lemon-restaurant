@@ -19,6 +19,12 @@ section.specials-heading button {
   width: 150px;
   border: none;
   font-weight: bold;
+  cursor: pointer;
+}
+
+section.specials-heading button a {
+  text-decoration: none;
+  color: #2f234f;
 }
 
 .allcard-container {

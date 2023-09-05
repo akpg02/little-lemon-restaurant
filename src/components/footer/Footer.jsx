@@ -20,6 +20,9 @@ function Footer() {
         <NavLink to="#">
           <box-icon type="logo" name="linkedin"></box-icon>
         </NavLink>
+        <NavLink>
+          <box-icon name="instagram-alt" type="logo"></box-icon>
+        </NavLink>
       </div>
       <div className="footer-content">
         <h4>Contact Us</h4>

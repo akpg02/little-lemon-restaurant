@@ -1,0 +1,53 @@
+.aboutus-section {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fit, 1fr); */
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
+  gap: 0.5rem;
+  margin: 60px auto;
+  max-width: 60vw;
+}
+
+.aboutus-text-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.aboutus-description {
+  max-width: 300px;
+  font-family: "Karla";
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.aboutus-pic-section {
+  position: relative;
+}
+.aboutus-pic-section img {
+  width: 100%;
+}
+
+.aboutus-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  line-height: 2;
+}
+
+.aboutus-location {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.image-one {
+  width: 280px;
+  position: absolute;
+  top: -30px;
+  left: 180px;
+  z-index: -1;
+}
+
+.image-two {
+  /* position: absolute; */
+  width: 280px;
+  top: 10px;
+  left: 40px;
+  z-index: -1;
+}

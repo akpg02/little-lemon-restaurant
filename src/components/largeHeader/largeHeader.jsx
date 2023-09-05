@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import "./largeHeader.css";
 import restaurant from "../../images/restauranfood.jpg";
 
@@ -12,7 +13,9 @@ const LargeHeader = () => {
             We are a family owned Mediterranean restaurant focused on
             traditional recipes served with a modern twist.
           </span>
-          <button>Reserve a Table</button>
+          <button>
+            <NavLink to="/reservations">Reserve a Table</NavLink>
+          </button>
         </div>
         <div className="home-page-image">
           <img src={restaurant} alt="restaurant" />
