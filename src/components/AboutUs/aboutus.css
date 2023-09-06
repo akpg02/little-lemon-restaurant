@@ -1,10 +1,11 @@
 .aboutus-section {
   display: grid;
-  /* grid-template-columns: repeat(auto-fit, 1fr); */
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   gap: 0.5rem;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
   margin: 60px auto;
-  max-width: 60vw;
+  max-width: 70vw;
 }
 
 .aboutus-text-section {
@@ -36,18 +37,81 @@
   font-weight: 400;
 }
 
+.images {
+  position: relative;
+}
+
+.images {
+  position: relative;
+  width: 400px;
+}
+
 .image-one {
   width: 280px;
   position: absolute;
   top: -30px;
-  left: 180px;
+  right: 90px;
   z-index: -1;
 }
 
+.image-one img {
+  width: 100%;
+}
+
 .image-two {
-  /* position: absolute; */
+  position: absolute;
   width: 280px;
-  top: 10px;
-  left: 40px;
+  top: 30px;
+  right: -40px;
   z-index: -1;
+}
+
+.image-two img {
+  width: 100%;
+}
+
+@media (max-width: 1220px) {
+  .aboutus-section {
+    grid-template-columns: repeat(2, 1fr);
+    /* margin: 0px 10px; */
+    max-width: 80vw;
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 850px) {
+  .images {
+    width: 200px;
+  }
+  .image-one {
+    width: 12rem;
+    left: 40px;
+  }
+  .image-two {
+    width: 12rem;
+    left: 130px;
+  }
+}
+
+@media (max-width: 660px) {
+  .images {
+    width: 100px;
+  }
+  .image-one {
+    width: 11rem;
+    left: 30px;
+  }
+  .image-two {
+    width: 12rem;
+    left: 110px;
+  }
+}
+
+@media (max-width: 640px) {
+  .aboutus-section {
+    grid-template-columns: 1fr;
+  }
+  .images {
+    display: none;
+  }
 }

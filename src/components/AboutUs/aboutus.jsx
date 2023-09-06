@@ -15,7 +15,7 @@ const AboutUs = () => {
             restaurant features a locally-sourced menu with daily specials.
           </p>
         </div>
-        <div className="aboutus-pic-section">
+        <div className="images">
           <div className="image-one">
             <img src={Restaurant} alt="restaurant" />
           </div>
@@ -23,6 +23,9 @@ const AboutUs = () => {
             <img src={RestaurantChef} alt="restaurant and chef" />
           </div>
         </div>
+        {/* <div className="aboutus-pic-section">
+          
+        </div> */}
       </div>
     </>
   );

@@ -21,7 +21,7 @@ function Footer() {
           <box-icon type="logo" name="linkedin"></box-icon>
         </NavLink>
         <NavLink>
-          <box-icon name="instagram-alt" type="logo"></box-icon>
+          <box-icon name="instagram" type="logo"></box-icon>
         </NavLink>
       </div>
       <div className="footer-content">
