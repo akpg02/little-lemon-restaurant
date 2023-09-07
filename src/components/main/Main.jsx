@@ -7,6 +7,8 @@ import LargeHeader from "../largeHeader/largeHeader";
 import Testimonials from "../testimonials/testimonial";
 import AboutUs from "../AboutUs/aboutus";
 
+import { testimonial } from "../testimonials/testimonialData";
+
 function Main() {
   return (
     <main>
@@ -24,7 +26,15 @@ function Main() {
           ))}
         </div>
       </div>
-      <Testimonials />
+      <div className="testimonial-section">
+        <h2 className="title">Testimonials</h2>
+        <div className="testimonial-cards">
+          {testimonial.map((card) => (
+            <Testimonials card={card} key={card.id} />
+          ))}
+        </div>
+      </div>
+
       <AboutUs />
     </main>
   );
