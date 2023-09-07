@@ -23,7 +23,7 @@ function Nav() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <a href="#about">About</a>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
               <NavLink to="/menu">Menu</NavLink>

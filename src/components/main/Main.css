@@ -35,11 +35,6 @@ section.specials-heading button a {
   max-width: 50vw;
 }
 
-h2.about-us-title {
-  margin: 50px auto;
-  text-align: center;
-}
-
 @media (max-width: 1800px) {
   .allcard-container {
     max-width: 65vw;

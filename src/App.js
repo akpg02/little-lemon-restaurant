@@ -2,6 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
+import About from "./components/about/aboutus";
 import Main from "./components/main/Main";
 import Reservations from "./components/reservations/reservations";
 import Menu from "./components/menu/menu";
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Main />} />
         <Route path="/reservations" element={<Reservations />} />
+        <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<OrderOnline />} />
         <Route path="/login" element={<Login />} />

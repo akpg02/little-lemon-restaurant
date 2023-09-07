@@ -5,7 +5,7 @@ import { data } from "./data";
 import Card from "../card/card";
 import LargeHeader from "../largeHeader/largeHeader";
 import Testimonials from "../testimonials/testimonial";
-import AboutUs from "../AboutUs/aboutus";
+import AboutUs from "../about/aboutus";
 
 import { testimonial } from "../testimonials/testimonialData";
 
@@ -34,7 +34,6 @@ function Main() {
           ))}
         </div>
       </div>
-      <h2 className="about-us-title">About Us</h2>
       <AboutUs />
     </main>
   );
