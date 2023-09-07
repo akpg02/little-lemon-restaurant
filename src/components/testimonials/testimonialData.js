@@ -18,7 +18,7 @@ export const testimonial = [
     stars: 5,
     name: "Benji",
     review:
-      "Recommeding this restaurant to all my friends. The food is delicious!",
+      "Recommeding the Little Lemon restaurant to all my friends. The food is delicious!",
     img: "benji.png",
   },
   {

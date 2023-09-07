@@ -34,7 +34,7 @@ function Main() {
           ))}
         </div>
       </div>
-
+      <h2 className="about-us-title">About Us</h2>
       <AboutUs />
     </main>
   );
