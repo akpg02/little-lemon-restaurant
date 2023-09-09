@@ -6,7 +6,6 @@ const Testimonials = ({ card }) => {
     <>
       <div className="testimonial-card">
         <div className="rating">
-          Rating:
           <span className="list-stars">
             {<StarRating stars={card.stars} />}
           </span>

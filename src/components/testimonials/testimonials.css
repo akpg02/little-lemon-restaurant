@@ -1,6 +1,5 @@
 h2.title {
   text-align: center;
-  
 }
 
 .testimonial-section {
@@ -56,5 +55,9 @@ h2.title {
 }
 
 .list-stars {
-  padding-left: 5px;
+  padding-left: 0px;
+}
+
+.star-rating .star {
+  font-size: 20px;
 }
