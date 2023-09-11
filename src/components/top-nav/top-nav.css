@@ -1,0 +1,10 @@
+.topnav {
+  width: 94%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 10px;
+}
+
+.topnav img {
+  width: 30px;
+}

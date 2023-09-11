@@ -42,31 +42,51 @@ const Login = () => {
               <div className="top-row">
                 <div className="field-wrap">
                   <label>
-                    First Name<span className="req">*</span>
+                    <span className="req"></span>
                   </label>
-                  <input type="text" required autoComplete="off" />
+                  <input
+                    type="text"
+                    required
+                    autoComplete="off"
+                    placeholder="First Name*"
+                  />
                 </div>
 
                 <div className="field-wrap">
                   <label>
-                    Last Name<span className="req">*</span>
+                    <span className="req"></span>
                   </label>
-                  <input type="text" required autoComplete="off" />
+                  <input
+                    type="text"
+                    required
+                    autoComplete="off"
+                    placeholder="Last Name*"
+                  />
                 </div>
               </div>
 
               <div className="field-wrap">
                 <label>
-                  Email Address<span className="req">*</span>
+                  <span className="req"></span>
                 </label>
-                <input type="email" required autoComplete="off" />
+                <input
+                  type="email"
+                  required
+                  autoComplete="off"
+                  placeholder="Email Address*"
+                />
               </div>
 
               <div className="field-wrap">
                 <label>
-                  Set A Password<span className="req">*</span>
+                  <span className="req"></span>
                 </label>
-                <input type="password" required autoComplete="off" />
+                <input
+                  type="password"
+                  required
+                  autoComplete="off"
+                  placeholder="Password*"
+                />
               </div>
               <button type="submit" className="button button-block">
                 Get Started
@@ -81,16 +101,26 @@ const Login = () => {
             <form action="/" method="post">
               <div className="field-wrap">
                 <label>
-                  Email Address<span className="req">*</span>
+                  <span className="req"></span>
                 </label>
-                <input type="email" required autoComplete="off" />
+                <input
+                  type="email"
+                  required
+                  autoComplete="off"
+                  placeholder="Email Address*"
+                />
               </div>
 
               <div className="field-wrap">
                 <label>
-                  Password<span className="req">*</span>
+                  <span className="req"></span>
                 </label>
-                <input type="password" required autoComplete="off" />
+                <input
+                  type="password"
+                  required
+                  autoComplete="off"
+                  placeholder="Password*"
+                />
               </div>
 
               <p className="forgot">

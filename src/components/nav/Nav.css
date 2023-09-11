@@ -47,7 +47,6 @@
   color: #574c4c;
   font-weight: 500;
   position: relative;
-  
 }
 
 .nav-elements ul a.active::after {
@@ -67,7 +66,7 @@
 
 @media (max-width: 730px) {
   .menu-icon {
-    /* display: block; */
+    display: block;
     cursor: pointer;
   }
 
