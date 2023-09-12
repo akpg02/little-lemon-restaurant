@@ -1,0 +1,122 @@
+.form-container {
+  max-width: 60vw;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.reservation-form {
+  margin: 30px auto;
+  background-color: #fff;
+}
+
+.reservation-heading {
+  background-color: var(--darkgreen);
+  padding: 30px;
+  margin-top: 30px;
+}
+
+.reservation-title {
+  color: var(--lemon);
+  font-size: 1.2rem;
+  text-align: center;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.form-control {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, auto));
+  gap: 20px;
+  margin: 15px auto;
+  max-width: 100vw;
+  align-items: center;
+}
+
+.form-control input {
+  display: flex;
+  outline: none;
+  border: none;
+}
+
+.form-control .label-input {
+  font-size: 1.2rem;
+}
+
+.form-control p {
+  text-transform: uppercase;
+  font-weight: 700;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-control .label-input {
+  width: 230px;
+  height: 40px;
+}
+
+.form-control select {
+  height: 40px;
+  font-weight: 300;
+  font-size: 1.2rem;
+  padding: 0 8px;
+  margin: 0 17px 0 0;
+  outline: none;
+  border: none;
+}
+
+.reservation-form button {
+  height: 50px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--lemon);
+  font-size: 16px;
+  color: var(--darkgray);
+  font-weight: bold;
+  width: 40vw;
+}
+
+.form-control-button {
+  display: flex;
+  justify-content: center;
+}
+
+.reservation-form p.required {
+  color: var(--peach);
+  text-align: center;
+  margin: 20px 0;
+}
+
+@media (max-width: 800px) {
+  .form-container {
+    max-width: 100vw;
+  }
+  .reservation-form {
+    width: 70vw;
+  }
+
+  .form-control-button {
+    display: flex;
+    justify-content: center;
+    /* width: 100%; */
+  }
+
+  .form-control button {
+    width: 90vw;
+    /* text-align: center; */
+  }
+}
+
+@media (max-width: 685px) {
+  .reservation-form {
+    max-width: 50vw;
+    margin: 30px auto;
+  }
+
+  .form-container {
+    max-width: 80vw;
+    justify-content: left;
+  }
+  .form-control p {
+    justify-content: left;
+  }
+}
