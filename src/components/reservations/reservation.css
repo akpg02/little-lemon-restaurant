@@ -1,7 +1,27 @@
+h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+}
 .form-container {
-  max-width: 60vw;
   margin: auto;
   border-radius: 10px;
+  margin: 80px auto;
+}
+
+.line {
+  border: 1px solid var(--gray);
+}
+
+.success-confirm {
+  color: var(--green);
+}
+
+.reservation-section {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 5px;
+  font-style: italic;
 }
 
 .reservation-form {
@@ -36,6 +56,7 @@
   display: flex;
   outline: none;
   border: none;
+  background-color: var(--gray);
 }
 
 .form-control .label-input {
@@ -50,7 +71,6 @@
 }
 
 .form-control .label-input {
-  width: 230px;
   height: 40px;
 }
 
@@ -72,18 +92,25 @@
   font-size: 16px;
   color: var(--darkgray);
   font-weight: bold;
-  width: 40vw;
+  width: 10rem;
+  cursor: pointer;
+  margin-top: 50px;
 }
 
 .form-control-button {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .reservation-form p.required {
   color: var(--peach);
   text-align: center;
   margin: 20px 0;
+}
+
+.editlink {
+  color: var(--peach);
+  font-weight: bold;
 }
 
 @media (max-width: 800px) {
@@ -96,19 +123,13 @@
 
   .form-control-button {
     display: flex;
-    justify-content: center;
-    /* width: 100%; */
-  }
-
-  .form-control button {
-    width: 90vw;
-    /* text-align: center; */
+    justify-content: space-around;
+    width: 100%;
   }
 }
 
 @media (max-width: 685px) {
   .reservation-form {
-    max-width: 50vw;
     margin: 30px auto;
   }
 
@@ -118,5 +139,9 @@
   }
   .form-control p {
     justify-content: left;
+  }
+
+  .reservation-form button {
+    width: 8rem;
   }
 }

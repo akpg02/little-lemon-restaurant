@@ -4,7 +4,7 @@ import Header from "./components/header/Header";
 import Footer from "./components/footer/Footer";
 import About from "./components/about/aboutus";
 import Main from "./components/main/Main";
-import Reservations from "./components/reservations/reservations";
+import Booking from "./components/reservations/MultiStep.jsx";
 import Menu from "./components/menu/menu";
 import OrderOnline from "./components/order-online/order-online";
 import Login from "./components/login/login";
@@ -15,7 +15,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path="/" element={<Main />} />
-        <Route path="/reservations" element={<Reservations />} />
+        <Route path="/reservations" element={<Booking />} />
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<OrderOnline />} />
