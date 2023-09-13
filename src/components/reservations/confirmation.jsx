@@ -10,6 +10,7 @@ const Confirmation = ({
   lastname,
   phone,
   email,
+  resetForm,
 }) => {
   return (
     <>
@@ -104,7 +105,7 @@ const Confirmation = ({
           />
         </div>
         <div className="form-control-button">
-          <button onClick={() => setPage(0)}>New Reservation</button>
+          <button onClick={() => resetForm()}>New Reservation</button>
         </div>
       </form>
     </>

@@ -39,6 +39,15 @@ const MultiStep = () => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
 
+  const resetForm = () => {
+    setPage(0);
+    setOccasion("");
+    setDiners(1);
+    setFirstName("");
+    setLastName("");
+    setPhone("");
+    setEmail("");
+  };
   const conditionalPage = () => {
     switch (page) {
       case 0:
@@ -95,6 +104,7 @@ const MultiStep = () => {
             lastname={lastname}
             phone={phone}
             email={email}
+            resetForm={resetForm}
           />
         );
       default:
