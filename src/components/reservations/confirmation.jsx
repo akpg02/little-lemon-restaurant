@@ -1,7 +1,6 @@
 import "./reservation.css";
 
 const Confirmation = ({
-  setPage,
   date,
   time,
   occasion,

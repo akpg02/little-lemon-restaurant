@@ -20,11 +20,13 @@ const getDate = () => {
 
 const getTime = () => {
   const now = new Date();
+  let hours = now.getHours();
   let mins = now.getMinutes();
+
+  hours = hours < 10 ? "0" + hours : hours;
   mins = mins < 10 ? "0" + mins : mins;
 
-  const time = now.getHours() + ":" + mins;
-  return time;
+  return hours + ":" + mins;
 };
 
 const MultiStep = () => {
