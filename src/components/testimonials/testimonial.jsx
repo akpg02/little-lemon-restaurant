@@ -17,7 +17,7 @@ const Testimonials = ({ card }) => {
           <div className="image-name">{card.name}</div>
         </div>
         <div className="testimonial-review">
-          <box-icon name="quote-alt-left" type="solid"></box-icon>
+          <i className="fa fa-quote-left" aria-hidden="true"></i>
           {card.review}
         </div>
       </div>

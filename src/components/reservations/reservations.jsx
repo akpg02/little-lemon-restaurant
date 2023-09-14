@@ -1,34 +1,28 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import "./reservation.css";
 
-const Reservation = ({
-  setPage,
-  setDate,
-  setTime,
-  setOccasion,
-  setDiners,
-  date,
-  time,
-  occasion,
-  diners,
-}) => {
+const Reservation = ({ setPage, state, dispatch }) => {
+  useEffect(() => {
+    dispatch({ type: "set_date", payload: state.date });
+    dispatch({ type: "update_date", payload: state.date });
+  }, [dispatch, state.date]);
+
   const dateInputRef = useRef(null);
-  const timeInputRef = useRef(null);
 
   const handleDateChange = (e) => {
-    setDate(e.target.value);
+    dispatch({ type: "set_date", payload: e.target.value });
   };
 
   const handleTimeChange = (e) => {
-    setTime(e.target.value);
+    dispatch({ type: "set_time", payload: e.target.value });
   };
 
   const handleOccasionChange = (e) => {
-    setOccasion(e.target.value);
+    dispatch({ type: "set_occasion", payload: e.target.value });
   };
 
   const handleDinerChange = (e) => {
-    setDiners(e.target.value);
+    dispatch({ type: "set_diners", payload: e.target.value });
   };
 
   return (
@@ -39,7 +33,7 @@ const Reservation = ({
           <input
             type="date"
             name="date"
-            value={date}
+            value={state.date}
             id="date"
             onChange={handleDateChange}
             ref={dateInputRef}
@@ -48,13 +42,30 @@ const Reservation = ({
         </div>
         <div className="form-control">
           <p className="label">Select a time </p>
-          <input
-            type="time"
+          <select
             name="time"
-            value={time}
             onChange={handleTimeChange}
-            ref={timeInputRef}
+            defaultValue={state.time}
+          >
+            <option value="Select a time">Select a time</option>
+            {state.times &&
+              state.times.map((el) => (
+                <option key={el} value={el}>
+                  {el}
+                </option>
+              ))}
+          </select>
+        </div>
+        <div className="form-control">
+          <p className="label">Number of Guests </p>
+          <input
             className={`label-input review`}
+            name="diners"
+            value={state.diners}
+            type="number"
+            id="diners"
+            min="1"
+            onChange={handleDinerChange}
           />
         </div>
         <div className="form-control">
@@ -62,26 +73,15 @@ const Reservation = ({
           <select
             name="occasion"
             onChange={handleOccasionChange}
-            defaultValue={occasion}
+            defaultValue={state.occasion}
           >
-            <option value="occasion">Select Occasion</option>
+            <option value="occasion">Select an occasion</option>
             <option value="birthday">Birthday</option>
             <option value="engagement">Engagement</option>
             <option value="anniversary">Anniversary</option>
           </select>
         </div>
-        <div className="form-control">
-          <p className="label">Number of Diners </p>
-          <input
-            className={`label-input review`}
-            name="diners"
-            value={diners}
-            type="number"
-            id="diners"
-            min="1"
-            onChange={handleDinerChange}
-          />
-        </div>
+
         <p className="required">Note: All fields are required</p>
         <div className="form-control-button">
           <button onClick={() => setPage(1)}>Next</button>

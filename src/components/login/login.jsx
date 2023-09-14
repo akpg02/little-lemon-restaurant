@@ -15,9 +15,6 @@ const Login = () => {
     setLoginActive(false);
   };
 
-  console.log("loginActive: ", loginActive);
-  console.log("signupActive: ", signUpActive);
-
   return (
     <div className="form">
       <ul className="tab-group">

@@ -28,10 +28,10 @@ h2.title {
   display: flex;
   align-items: center;
 }
+
 .image-container {
   margin: 10px 0px;
   width: 100px;
-
   object-fit: cover;
   margin-right: 10px;
 }
@@ -60,4 +60,9 @@ h2.title {
 
 .star-rating .star {
   font-size: 20px;
+}
+
+.fa-quote-left {
+  font-size: large;
+  padding-right: 5px;
 }

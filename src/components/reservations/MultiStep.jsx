@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 
 import "./reservation.css";
 import Reservation from "./reservations";
@@ -18,96 +18,69 @@ const getDate = () => {
   return y + "-" + m + "-" + d;
 };
 
-const getTime = () => {
-  const now = new Date();
-  let hours = now.getHours();
-  let mins = now.getMinutes();
-
-  hours = hours < 10 ? "0" + hours : hours;
-  mins = mins < 10 ? "0" + mins : mins;
-
-  return hours + ":" + mins;
+const initState = {
+  date: getDate(),
+  occasion: "",
+  diners: 1,
+  firstname: "",
+  lastname: "",
+  phone: "",
+  email: "",
+  times: [],
+  time: "",
 };
 
-const MultiStep = () => {
+const MultiStep = ({ times }) => {
   const [page, setPage] = useState(0);
-  const [date, setDate] = useState(getDate());
-  const [time, setTime] = useState(getTime());
-  const [occasion, setOccasion] = useState("");
-  const [diners, setDiners] = useState(1);
 
-  const [firstname, setFirstName] = useState("");
-  const [lastname, setLastName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("");
-
-  const resetForm = () => {
-    setPage(0);
-    setOccasion("");
-    setDiners(1);
-    setFirstName("");
-    setLastName("");
-    setPhone("");
-    setEmail("");
+  const reducer = (state = initState, action) => {
+    switch (action.type) {
+      case "update_date":
+        const temp = times.find((el) => el.date === action.payload);
+        return {
+          ...state,
+          times: temp ? temp.times : [],
+        };
+      case "set_date":
+        return { ...state, date: action.payload };
+      case "set_occasion":
+        return { ...state, occasion: action.payload };
+      case "set_diners":
+        return { ...state, diners: action.payload };
+      case "set_firstname":
+        return { ...state, firstname: action.payload };
+      case "set_lastname":
+        return { ...state, lastname: action.payload };
+      case "set_phone":
+        return { ...state, phone: action.payload };
+      case "set_email":
+        return { ...state, email: action.payload };
+      case "set_time":
+        return { ...state, time: action.payload };
+      case "reset_form":
+        setPage(0);
+        return { ...state, ...initState };
+      default:
+        return state;
+    }
   };
+  const [state, dispatch] = useReducer(reducer, initState);
+
   const conditionalPage = () => {
     switch (page) {
       case 0:
         return (
-          <Reservation
-            setDate={setDate}
-            setTime={setTime}
-            setOccasion={setOccasion}
-            setDiners={setDiners}
-            setPage={setPage}
-            date={date}
-            time={time}
-            occasion={occasion}
-            diners={diners}
-          />
+          <Reservation setPage={setPage} state={state} dispatch={dispatch} />
         );
       case 1:
         return (
-          <ContactInfo
-            setPage={setPage}
-            setFirstName={setFirstName}
-            setLastName={setLastName}
-            setPhone={setPhone}
-            setEmail={setEmail}
-            firstname={firstname}
-            lastname={lastname}
-            phone={phone}
-            email={email}
-          />
+          <ContactInfo setPage={setPage} state={state} dispatch={dispatch} />
         );
       case 2:
-        return (
-          <Review
-            setPage={setPage}
-            date={date}
-            time={time}
-            occasion={occasion}
-            diners={diners}
-            firstname={firstname}
-            lastname={lastname}
-            phone={phone}
-            email={email}
-          />
-        );
+        return <Review setPage={setPage} state={state} dispatch={dispatch} />;
       case 3:
         return (
-          <Confirmation
-            setPage={setPage}
-            date={date}
-            time={time}
-            occasion={occasion}
-            diners={diners}
-            firstname={firstname}
-            lastname={lastname}
-            phone={phone}
-            email={email}
-            resetForm={resetForm}
-          />
+          <Confirmation setPage={setPage} state={state} dispatch={dispatch} />
         );
       default:
         return null;

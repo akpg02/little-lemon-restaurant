@@ -1,16 +1,6 @@
 import "./reservation.css";
 
-const Confirmation = ({
-  date,
-  time,
-  occasion,
-  diners,
-  firstname,
-  lastname,
-  phone,
-  email,
-  resetForm,
-}) => {
+const Confirmation = ({ state, dispatch }) => {
   return (
     <>
       <h2 className="success-confirm">Success! Table Reserved</h2>
@@ -25,7 +15,7 @@ const Confirmation = ({
           <input
             type="text"
             name="firstname"
-            value={firstname}
+            value={state.firstname}
             id="firstname"
             className={`label-input review`}
             readOnly
@@ -36,7 +26,7 @@ const Confirmation = ({
           <input
             type="text"
             name="lastname"
-            value={lastname}
+            value={state.lastname}
             className={`label-input review`}
             readOnly
           />
@@ -46,7 +36,7 @@ const Confirmation = ({
           <input
             type="text"
             name="phone"
-            value={phone}
+            value={state.phone}
             className={`label-input review`}
             readOnly
           />
@@ -56,7 +46,7 @@ const Confirmation = ({
           <input
             type="email"
             name="email"
-            value={email}
+            value={state.email}
             className={`label-input review`}
             readOnly
           />
@@ -74,7 +64,7 @@ const Confirmation = ({
             className={`label-input review`}
             name="date"
             type="date"
-            value={date}
+            value={state.date}
             id="date"
             readOnly
           />
@@ -85,26 +75,32 @@ const Confirmation = ({
             className={`label-input review`}
             type="time"
             name="time"
-            value={time}
+            value={state.time}
             readOnly
           />
         </div>
         <div className="form-control">
           <p className="label">Occasion </p>
-          <input className={`label-input review`} value={occasion} readOnly />
+          <input
+            className={`label-input review`}
+            value={state.occasion}
+            readOnly
+          />
         </div>
         <div className="form-control">
           <p className="label">Number of Diners </p>
           <input
             className={`label-input review`}
             name="diners"
-            value={diners}
+            value={state.diners}
             id="diners"
             readOnly
           />
         </div>
         <div className="form-control-button">
-          <button onClick={() => resetForm()}>New Reservation</button>
+          <button onClick={() => dispatch({ type: "reset_form" })}>
+            New Reservation
+          </button>
         </div>
       </form>
     </>

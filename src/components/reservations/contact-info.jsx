@@ -1,30 +1,20 @@
 import "./reservation.css";
 
-const ContactInfo = ({
-  setPage,
-  setFirstName,
-  setEmail,
-  setPhone,
-  setLastName,
-  firstname,
-  lastname,
-  phone,
-  email,
-}) => {
+const ContactInfo = ({ setPage, state, dispatch }) => {
   const handleFirstNameChange = (e) => {
-    setFirstName(e.target.value);
+    dispatch({ type: "set_firstname", payload: e.target.value });
   };
 
   const handleLastNameChange = (e) => {
-    setLastName(e.target.value);
+    dispatch({ type: "set_lastname", payload: e.target.value });
   };
 
   const handlePhoneChange = (e) => {
-    setPhone(e.target.value);
+    dispatch({ type: "set_phone", payload: e.target.value });
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    dispatch({ type: "set_email", payload: e.target.value });
   };
 
   return (
@@ -36,7 +26,7 @@ const ContactInfo = ({
           <input
             type="text"
             name="firstname"
-            value={firstname}
+            value={state.firstname}
             id="firstname"
             onChange={handleFirstNameChange}
           />
@@ -46,7 +36,7 @@ const ContactInfo = ({
           <input
             type="text"
             name="lastname"
-            value={lastname}
+            value={state.lastname}
             onChange={handleLastNameChange}
           />
         </div>
@@ -55,7 +45,7 @@ const ContactInfo = ({
           <input
             type="text"
             name="phone"
-            value={phone}
+            value={state.phone}
             onChange={handlePhoneChange}
           />
         </div>
@@ -64,7 +54,7 @@ const ContactInfo = ({
           <input
             type="email"
             name="email"
-            value={email}
+            value={state.email}
             onChange={handleEmailChange}
           />
         </div>
