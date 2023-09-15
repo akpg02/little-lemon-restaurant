@@ -17,6 +17,16 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
     dispatch({ type: "set_email", payload: e.target.value });
   };
 
+  const previousPage = (e) => {
+    e.preventDefault();
+    setPage(0);
+  };
+
+  const nextPage = (e) => {
+    e.preventDefault();
+    setPage(2);
+  };
+
   return (
     <>
       <h2>Contact Information</h2>
@@ -29,6 +39,7 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             value={state.firstname}
             id="firstname"
             onChange={handleFirstNameChange}
+            required
           />
         </div>
         <div className="form-control">
@@ -38,6 +49,7 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             name="lastname"
             value={state.lastname}
             onChange={handleLastNameChange}
+            required
           />
         </div>
         <div className="form-control">
@@ -47,6 +59,7 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             name="phone"
             value={state.phone}
             onChange={handlePhoneChange}
+            required
           />
         </div>
         <div className="form-control">
@@ -56,12 +69,17 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             name="email"
             value={state.email}
             onChange={handleEmailChange}
+            required
           />
         </div>
         <p className="required">Note: All fields are required</p>
         <div className="form-control-button">
-          <button onClick={() => setPage(0)}>Back</button>
-          <button onClick={() => setPage(2)}>Next</button>
+          <button type="button" onClick={previousPage}>
+            Back
+          </button>
+          <button type="button" onClick={nextPage}>
+            Next
+          </button>
         </div>
       </form>
     </>

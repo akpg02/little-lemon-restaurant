@@ -4,7 +4,6 @@ import "./reservation.css";
 import Reservation from "./reservations";
 import ContactInfo from "./contact-info";
 import Review from "./review";
-import Confirmation from "./confirmation";
 
 const getDate = () => {
   const now = new Date();
@@ -32,11 +31,21 @@ const initState = {
 
 const MultiStep = ({ times }) => {
   const [page, setPage] = useState(0);
+  const [confirmed, setConfirmed] = useState(false);
+
+  const updateTimes = (action) => {
+    return times && times.find((el) => el.date === action.payload);
+  };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    setConfirmed(true);
+  };
 
   const reducer = (state = initState, action) => {
     switch (action.type) {
       case "update_date":
-        const temp = times.find((el) => el.date === action.payload);
+        const temp = updateTimes(action);
         return {
           ...state,
           times: temp ? temp.times : [],
@@ -64,7 +73,13 @@ const MultiStep = ({ times }) => {
         return state;
     }
   };
+
   const [state, dispatch] = useReducer(reducer, initState);
+
+  const resetForm = (e) => {
+    e.preventDefault();
+    dispatch({ type: "reset_form" });
+  };
 
   const conditionalPage = () => {
     switch (page) {
@@ -77,11 +92,18 @@ const MultiStep = ({ times }) => {
           <ContactInfo setPage={setPage} state={state} dispatch={dispatch} />
         );
       case 2:
-        return <Review setPage={setPage} state={state} dispatch={dispatch} />;
-      case 3:
         return (
-          <Confirmation setPage={setPage} state={state} dispatch={dispatch} />
+          <Review
+            setPage={setPage}
+            state={state}
+            dispatch={dispatch}
+            submitForm={submitForm}
+            confirmed={confirmed}
+            setConfirmed={setConfirmed}
+            resetForm={resetForm}
+          />
         );
+
       default:
         return null;
     }

@@ -25,6 +25,11 @@ const Reservation = ({ setPage, state, dispatch }) => {
     dispatch({ type: "set_diners", payload: e.target.value });
   };
 
+  const nextPage = (e) => {
+    e.preventDefault();
+    setPage(1);
+  };
+
   return (
     <>
       <form className="reservation-form">
@@ -38,6 +43,7 @@ const Reservation = ({ setPage, state, dispatch }) => {
             onChange={handleDateChange}
             ref={dateInputRef}
             className={`label-input review`}
+            required
           />
         </div>
         <div className="form-control">
@@ -46,6 +52,7 @@ const Reservation = ({ setPage, state, dispatch }) => {
             name="time"
             onChange={handleTimeChange}
             defaultValue={state.time}
+            required
           >
             <option value="Select a time">Select a time</option>
             {state.times &&
@@ -66,6 +73,7 @@ const Reservation = ({ setPage, state, dispatch }) => {
             id="diners"
             min="1"
             onChange={handleDinerChange}
+            required
           />
         </div>
         <div className="form-control">
@@ -74,6 +82,7 @@ const Reservation = ({ setPage, state, dispatch }) => {
             name="occasion"
             onChange={handleOccasionChange}
             defaultValue={state.occasion}
+            required
           >
             <option value="occasion">Select an occasion</option>
             <option value="birthday">Birthday</option>
@@ -84,7 +93,9 @@ const Reservation = ({ setPage, state, dispatch }) => {
 
         <p className="required">Note: All fields are required</p>
         <div className="form-control-button">
-          <button onClick={() => setPage(1)}>Next</button>
+          <button type="button" onClick={nextPage}>
+            Next
+          </button>
         </div>
       </form>
     </>

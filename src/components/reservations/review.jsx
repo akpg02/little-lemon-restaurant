@@ -1,7 +1,23 @@
-const Review = ({ setPage, state }) => {
+const Review = ({
+  setPage,
+  state,
+  submitForm,
+  confirmed,
+  dispatch,
+  resetForm,
+}) => {
+  const previousPage = (e) => {
+    e.preventDefault();
+    setPage(1);
+  };
+
   return (
     <>
-      <h2>Review & Confirm</h2>
+      {confirmed ? (
+        <h2 className="success-confirm">Success! Table Reserved</h2>
+      ) : (
+        <h2>Review & Confirm</h2>
+      )}
       <section>
         <div className="line"></div>
         <p className="reservation-section">Contact Information</p>
@@ -49,9 +65,11 @@ const Review = ({ setPage, state }) => {
             readOnly
           />
         </div>
-        <p className="editlink" onClick={() => setPage(1)}>
-          Edit
-        </p>
+        {!confirmed && (
+          <p className="editlink" onClick={() => setPage(1)}>
+            Edit
+          </p>
+        )}
       </form>
       <section>
         <div className="line"></div>
@@ -98,12 +116,31 @@ const Review = ({ setPage, state }) => {
             readOnly
           />
         </div>
-        <p className="editlink" onClick={() => setPage(0)}>
-          Edit
-        </p>
+        {!confirmed && (
+          <p className="editlink" onClick={() => setPage(0)}>
+            Edit
+          </p>
+        )}
         <div className="form-control-button">
-          <button onClick={() => setPage(1)}>Back</button>
-          <button onClick={() => setPage(3)}>Next</button>
+          {confirmed ? (
+            <button type="button" onClick={resetForm}>
+              New Reservation
+            </button>
+          ) : (
+            <>
+              <button type="button" aria-label="back" onClick={previousPage}>
+                Back
+              </button>
+              <button
+                aria-label="confirm"
+                id="button"
+                type="submit"
+                onClick={submitForm}
+              >
+                Confirm
+              </button>
+            </>
+          )}
         </div>
       </form>
     </>

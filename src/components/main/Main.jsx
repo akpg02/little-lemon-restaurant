@@ -16,7 +16,7 @@ function Main() {
       <div className="specials">
         <section className="specials-heading">
           <p>This weeks specials!</p>{" "}
-          <button>
+          <button type="button">
             <NavLink to="/menu">Online Menu</NavLink>
           </button>
         </section>
