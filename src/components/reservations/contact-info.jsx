@@ -24,7 +24,14 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
 
   const nextPage = (e) => {
     e.preventDefault();
-    setPage(2);
+    if (
+      state.firstname.length > 0 &&
+      state.lastname.length > 0 &&
+      state.phone.length > 0 &&
+      state.email.length > 0
+    ) {
+      setPage(2);
+    }
   };
 
   return (

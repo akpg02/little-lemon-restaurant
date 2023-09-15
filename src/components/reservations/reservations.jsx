@@ -27,7 +27,9 @@ const Reservation = ({ setPage, state, dispatch }) => {
 
   const nextPage = (e) => {
     e.preventDefault();
-    setPage(1);
+    if (state.time.length > 0 && state.occasion.length > 0) {
+      setPage(1);
+    }
   };
 
   return (
