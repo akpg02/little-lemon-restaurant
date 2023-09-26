@@ -3,7 +3,6 @@ const Review = ({
   state,
   submitForm,
   confirmed,
-  dispatch,
   resetForm,
 }) => {
   const previousPage = (e) => {

@@ -33,29 +33,14 @@ const initState = {
 const MultiStep = () => {
   const [page, setPage] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
-  const [timesT, setTimes] = useState([]);
   const [message, setMessage] = useState("");
-
-  const updateTimes = useCallback(async (date) => {
-    try {
-      const data = await fetchAPI(date);
-      setTimes(data);
-    } catch (error) {
-      setMessage(error.message);
-    }
-  }, []);
-
-  const submitForm = async (e) => {
-    e.preventDefault();
-    setConfirmed(true);
-  };
 
   const reducer = (state = initState, action) => {
     switch (action.type) {
       case "update_date": {
         return {
           ...state,
-          times: timesT,
+          times: action.payload,
         };
       }
       case "set_date": {
@@ -86,7 +71,6 @@ const MultiStep = () => {
         setPage(0);
         return { ...state, ...initState };
       }
-
       default: {
         return state;
       }
@@ -94,6 +78,21 @@ const MultiStep = () => {
   };
 
   const [state, dispatch] = useReducer(reducer, initState);
+
+  const updateTimes = useCallback(async (date) => {
+    try {
+      const data = await fetchAPI(date);
+      dispatch({ type: "update_date", payload: data });
+    } catch (error) {
+      dispatch({ type: "update_date", payload: [] });
+      setMessage(error.message);
+    }
+  }, []);
+
+  const submitForm = async (e) => {
+    e.preventDefault();
+    setConfirmed(true);
+  };
 
   const resetForm = (e) => {
     e.preventDefault();
@@ -111,8 +110,6 @@ const MultiStep = () => {
             updateTimes={updateTimes}
             message={message}
             setMessage={setMessage}
-            setTimes={setTimes}
-            timesT={timesT}
           />
         );
       case 1:

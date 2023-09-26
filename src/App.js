@@ -9,38 +9,7 @@ import Menu from "./components/menu/menu";
 import OrderOnline from "./components/order-online/order-online";
 import Login from "./components/login/login";
 
-const Times = [
-  {
-    date: "2023-09-13",
-    times: ["17:00", "18:00", "19:00", "20:00", "21:00", "22:00"],
-  },
-  {
-    date: "2023-09-14",
-    times: ["17:00", "18:00", "19:00"],
-  },
-  {
-    date: "2023-09-15",
-    times: ["20:00", "21:00", "22:00"],
-  },
-];
-
 function App() {
-  //const [state, setState] = useState(initState);
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const data = await fetchAPI(getDate());
-  //       setState((s) => ({ ...s, times: data }));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
-
-  //console.log("this is state---in App.js", state);
-
   return (
     <div className="App">
       <Header />

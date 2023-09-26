@@ -20,7 +20,6 @@ const Reservation = ({
   updateTimes,
   message,
   setMessage,
-  timesT,
 }) => {
   const dateInputRef = useRef(null);
   const timeInputRef = useRef(null);
@@ -28,7 +27,7 @@ const Reservation = ({
   const handleDateChange = async (e) => {
     dispatch({ type: "set_date", payload: e.target.value });
     updateTimes(e.target.value);
-    dispatch({ type: "update_date", payload: timesT });
+    dispatch({ type: "update_date", payload: state.times });
     setMessage("");
   };
 
@@ -54,7 +53,6 @@ const Reservation = ({
   useEffect(() => {
     if (state.date === getDate()) {
       updateTimes(getDate());
-      dispatch({ type: "update_date", payload: state.date });
     }
   }, [dispatch, state.date, updateTimes]);
 
@@ -85,8 +83,8 @@ const Reservation = ({
             required
           >
             <option value="Select a time">Select a time</option>
-            {timesT &&
-              timesT.map((el) => (
+            {state.times &&
+              state.times.map((el) => (
                 <option key={el} value={el}>
                   {el}
                 </option>
