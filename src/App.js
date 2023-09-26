@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Header from "./components/header/Header";
@@ -26,23 +25,28 @@ const Times = [
 ];
 
 function App() {
-  const [selectedTime, setAvailableTimes] = useState("");
+  //const [state, setState] = useState(initState);
+
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const data = await fetchAPI(getDate());
+  //       setState((s) => ({ ...s, times: data }));
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
+
+  //console.log("this is state---in App.js", state);
 
   return (
     <div className="App">
       <Header />
       <Routes>
         <Route exact path="/" element={<Main />} />
-        <Route
-          path="/reservations"
-          element={
-            <Booking
-              selectedTime={selectedTime}
-              setAvailableTimes={setAvailableTimes}
-              times={Times}
-            />
-          }
-        />
+        <Route path="/reservations" element={<Booking />} />
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/order" element={<OrderOnline />} />

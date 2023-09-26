@@ -1,9 +1,10 @@
-import { useState, useReducer } from "react";
+import { useState, useReducer, useCallback } from "react";
 
 import "./reservation.css";
 import Reservation from "./reservations";
 import ContactInfo from "./contact-info";
 import Review from "./review";
+import { fetchAPI } from "../../api";
 
 const getDate = () => {
   const now = new Date();
@@ -29,48 +30,66 @@ const initState = {
   time: "",
 };
 
-const MultiStep = ({ times }) => {
+const MultiStep = () => {
   const [page, setPage] = useState(0);
   const [confirmed, setConfirmed] = useState(false);
+  const [timesT, setTimes] = useState([]);
+  const [message, setMessage] = useState("");
 
-  const updateTimes = (action) => {
-    return times && times.find((el) => el.date === action.payload);
-  };
+  const updateTimes = useCallback(async (date) => {
+    try {
+      const data = await fetchAPI(date);
+      setTimes(data);
+    } catch (error) {
+      setMessage(error.message);
+    }
+  }, []);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     setConfirmed(true);
   };
 
   const reducer = (state = initState, action) => {
     switch (action.type) {
-      case "update_date":
-        const temp = updateTimes(action);
+      case "update_date": {
         return {
           ...state,
-          times: temp ? temp.times : [],
+          times: timesT,
         };
-      case "set_date":
+      }
+      case "set_date": {
         return { ...state, date: action.payload };
-      case "set_occasion":
+      }
+      case "set_occasion": {
         return { ...state, occasion: action.payload };
-      case "set_diners":
+      }
+      case "set_diners": {
         return { ...state, diners: action.payload };
-      case "set_firstname":
+      }
+      case "set_firstname": {
         return { ...state, firstname: action.payload };
-      case "set_lastname":
+      }
+      case "set_lastname": {
         return { ...state, lastname: action.payload };
-      case "set_phone":
+      }
+      case "set_phone": {
         return { ...state, phone: action.payload };
-      case "set_email":
+      }
+      case "set_email": {
         return { ...state, email: action.payload };
-      case "set_time":
+      }
+      case "set_time": {
         return { ...state, time: action.payload };
-      case "reset_form":
+      }
+      case "reset_form": {
         setPage(0);
         return { ...state, ...initState };
-      default:
+      }
+
+      default: {
         return state;
+      }
     }
   };
 
@@ -85,7 +104,16 @@ const MultiStep = ({ times }) => {
     switch (page) {
       case 0:
         return (
-          <Reservation setPage={setPage} state={state} dispatch={dispatch} />
+          <Reservation
+            setPage={setPage}
+            state={state}
+            dispatch={dispatch}
+            updateTimes={updateTimes}
+            message={message}
+            setMessage={setMessage}
+            setTimes={setTimes}
+            timesT={timesT}
+          />
         );
       case 1:
         return (
@@ -103,7 +131,6 @@ const MultiStep = ({ times }) => {
             resetForm={resetForm}
           />
         );
-
       default:
         return null;
     }

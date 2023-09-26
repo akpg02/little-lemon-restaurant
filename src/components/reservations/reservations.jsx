@@ -1,16 +1,35 @@
 import { useRef, useEffect } from "react";
 import "./reservation.css";
 
-const Reservation = ({ setPage, state, dispatch }) => {
-  useEffect(() => {
-    dispatch({ type: "set_date", payload: state.date });
-    dispatch({ type: "update_date", payload: state.date });
-  }, [dispatch, state.date]);
+const getDate = () => {
+  const now = new Date();
+  let y = now.getFullYear();
+  let m = now.getMonth() + 1;
+  let d = now.getDate();
 
+  m = m < 10 ? "0" + m : m;
+  d = d < 10 ? "0" + d : d;
+
+  return y + "-" + m + "-" + d;
+};
+
+const Reservation = ({
+  setPage,
+  state,
+  dispatch,
+  updateTimes,
+  message,
+  setMessage,
+  timesT,
+}) => {
   const dateInputRef = useRef(null);
+  const timeInputRef = useRef(null);
 
-  const handleDateChange = (e) => {
+  const handleDateChange = async (e) => {
     dispatch({ type: "set_date", payload: e.target.value });
+    updateTimes(e.target.value);
+    dispatch({ type: "update_date", payload: timesT });
+    setMessage("");
   };
 
   const handleTimeChange = (e) => {
@@ -32,9 +51,17 @@ const Reservation = ({ setPage, state, dispatch }) => {
     }
   };
 
+  useEffect(() => {
+    if (state.date === getDate()) {
+      updateTimes(getDate());
+      dispatch({ type: "update_date", payload: state.date });
+    }
+  }, [dispatch, state.date, updateTimes]);
+
   return (
     <>
       <form className="reservation-form">
+        {message ? <p className="message">{message}</p> : null}
         <div className="form-control">
           <p className="label">Select a date </p>
           <input
@@ -54,11 +81,12 @@ const Reservation = ({ setPage, state, dispatch }) => {
             name="time"
             onChange={handleTimeChange}
             defaultValue={state.time}
+            ref={timeInputRef}
             required
           >
             <option value="Select a time">Select a time</option>
-            {state.times &&
-              state.times.map((el) => (
+            {timesT &&
+              timesT.map((el) => (
                 <option key={el} value={el}>
                   {el}
                 </option>
