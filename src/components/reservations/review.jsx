@@ -2,8 +2,9 @@ const Review = ({
   setPage,
   state,
   submitForm,
-  confirmed,
+  message,
   resetForm,
+  confirmed,
 }) => {
   const previousPage = (e) => {
     e.preventDefault();
@@ -13,9 +14,12 @@ const Review = ({
   return (
     <>
       {confirmed ? (
-        <h2 className="success-confirm">Success! Table Reserved</h2>
+        <h2 className="success-confirm">{message}</h2>
       ) : (
-        <h2>Review & Confirm</h2>
+        <>
+          <h2 className="message">{message}</h2>
+          <h2>Review & Confirm</h2>
+        </>
       )}
       <section>
         <div className="line"></div>

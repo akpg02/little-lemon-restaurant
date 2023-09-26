@@ -4,7 +4,7 @@ import "./reservation.css";
 import Reservation from "./reservations";
 import ContactInfo from "./contact-info";
 import Review from "./review";
-import { fetchAPI } from "../../api";
+import { fetchAPI, submitAPI } from "../../api";
 
 const getDate = () => {
   const now = new Date();
@@ -91,11 +91,21 @@ const MultiStep = () => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    setConfirmed(true);
+    try {
+      submitAPI(state);
+      setMessage("Success! Reservation Confirmed");
+
+      setConfirmed(true);
+    } catch (error) {
+      setMessage("An Error Occurred While Reserving a Table");
+      setConfirmed(false);
+    }
   };
 
   const resetForm = (e) => {
     e.preventDefault();
+    setMessage("");
+    setConfirmed(false);
     dispatch({ type: "reset_form" });
   };
 
@@ -123,9 +133,10 @@ const MultiStep = () => {
             state={state}
             dispatch={dispatch}
             submitForm={submitForm}
-            confirmed={confirmed}
-            setConfirmed={setConfirmed}
+            message={message}
+            setMessage={setMessage}
             resetForm={resetForm}
+            confirmed={confirmed}
           />
         );
       default:
