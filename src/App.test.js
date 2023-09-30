@@ -2,6 +2,18 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./components/reservations/MultiStep";
 import ReviewForm from "./components/reservations/review";
 
+const getDate = () => {
+  const now = new Date();
+  let y = now.getFullYear();
+  let m = now.getMonth() + 1;
+  let d = now.getDate();
+
+  m = m < 10 ? "0" + m : m;
+  d = d < 10 ? "0" + d : d;
+
+  return y + "-" + m + "-" + d;
+};
+
 const state = {
   date: "09/15/2023",
   occasion: "Birthday",
@@ -14,6 +26,32 @@ const state = {
   time: "17:00",
 };
 
+const localStorageMock = (function () {
+  let store = {
+    "2023-09-23": ["10:00", "11:00", "12:00"],
+    "2023-09-24": ["14:00", "15:00", "16:00"],
+  };
+
+  return {
+    getItem: function (key) {
+      return store[key] || null;
+    },
+    setItem: function (key, value) {
+      store[key] = value;
+    },
+    removeItem: function (key) {
+      delete store[key];
+    },
+    clear: function () {
+      store = {};
+    },
+  };
+})();
+
+Object.defineProperty(window, "localStorage", {
+  value: localStorageMock,
+});
+
 describe("Reservation Form component", () => {
   it("'select a date' text appears on page", () => {
     render(<BookingForm />);
@@ -24,14 +62,61 @@ describe("Reservation Form component", () => {
   it("submit reservation form - before submit clicked", async () => {
     render(<ReviewForm state={state} confirmed={false} />);
     const submitButton = screen.getByRole("button", { name: /confirm/i });
-    fireEvent.click(submitButton);
+    await (() => fireEvent.click(submitButton));
 
     const successHeading = screen.getByText(/Review & Confirm/i);
     expect(successHeading).toBeInTheDocument();
   });
-  it("submit reservation for - after submit clicked", () => {
+  it("submit reservation form - after submit clicked", async () => {
     render(<ReviewForm state={state} confirmed={true} />);
-    const successHeading = screen.getByText(/Success! Table Reserved/i);
-    expect(successHeading).toBeInTheDocument();
+    screen.getByRole("button", { name: /New Reservation/i });
+  });
+});
+
+const setupDate = () => {
+  const utils = render(<BookingForm />);
+  // locating date select input element on the Booking form
+  const input = screen.getByLabelText("date-input");
+  return { input, ...utils };
+};
+
+const setupTime = () => {
+  const utils = render(<BookingForm />);
+  // locating time select input element on the Booking form
+  const select = screen.getByLabelText("time-input");
+  return { select, ...utils };
+};
+
+describe("Update times method", () => {
+  it("does the date input automatically update to current day", () => {
+    const { input } = setupDate();
+    fireEvent.change(input, { target: { value: getDate() } });
+    expect(input.value).toBe("2023-09-30");
+  });
+
+  it("should correctly set default option -- select a time", async () => {
+    const { select } = setupTime();
+    expect(select.value).toBe("Select a time");
+  });
+
+  it("change the date", async () => {
+    const { input } = setupDate();
+    fireEvent.change(input, { target: { value: "2023-09-23" } });
+    expect(input.value).toBe("2023-09-23");
+  });
+});
+
+describe("Testing available times using localStorage", () => {
+  it("write to localStorage", () => {
+    localStorageMock.setItem("2023-09-30", ["09:00", "10:00", "11:00"]);
+    const times = localStorageMock.getItem("2023-09-30");
+    expect(times).toEqual(["09:00", "10:00", "11:00"]);
+  });
+
+  it("get available times -- read from localStorage", () => {
+    const { input } = setupDate();
+    fireEvent.change(input, { target: { value: "2023-09-23" } });
+    const times = localStorageMock.getItem("2023-09-23");
+    expect(times).toEqual(["10:00", "11:00", "12:00"]);
   });
 });

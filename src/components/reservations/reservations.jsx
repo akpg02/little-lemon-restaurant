@@ -70,6 +70,7 @@ const Reservation = ({
             onChange={handleDateChange}
             ref={dateInputRef}
             className={`label-input review`}
+            aria-label="date-input"
             required
           />
         </div>
@@ -80,12 +81,17 @@ const Reservation = ({
             onChange={handleTimeChange}
             defaultValue={state.time}
             ref={timeInputRef}
+            aria-label="time-input"
+            data-testid="time"
             required
+            role="combobox"
           >
-            <option value="Select a time">Select a time</option>
+            <option value="Select a time" data-testid="select-option">
+              Select a time
+            </option>
             {state.times &&
               state.times.map((el) => (
-                <option key={el} value={el}>
+                <option key={el} value={el} data-testid="select-option">
                   {el}
                 </option>
               ))}

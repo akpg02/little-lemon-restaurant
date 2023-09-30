@@ -93,7 +93,7 @@ const MultiStep = () => {
     e.preventDefault();
     try {
       submitAPI(state);
-      setMessage("Success! Reservation Confirmed");
+      setMessage("Success! Reservation Confirmed!");
 
       setConfirmed(true);
     } catch (error) {
