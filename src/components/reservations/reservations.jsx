@@ -81,7 +81,9 @@ const Reservation = ({
       <form className="reservation-form">
         {message ? <p className="message">{message}</p> : null}
         <div className="form-control">
-          <p className="label">Select a date </p>
+          <p className="label" htmlFor="date">
+            Select a date{" "}
+          </p>
           <input
             type="date"
             name="date"
@@ -137,6 +139,8 @@ const Reservation = ({
             name="occasion"
             onChange={handleOccasionChange}
             defaultValue={state.occasion}
+            aria-label="occasion-input"
+            data-testid="occasion"
             required
           >
             <option value="default">Select an occasion</option>
@@ -153,7 +157,14 @@ const Reservation = ({
           <button
             type="button"
             onClick={nextPage}
-            disabled={state.time === "" || state.occasion === ""}
+            aria-label="next-button"
+            data-testid="next"
+            disabled={
+              state.time === "" ||
+              state.occasion === "" ||
+              error.time ||
+              error.occasion
+            }
           >
             Next
           </button>

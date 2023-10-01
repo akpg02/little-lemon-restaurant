@@ -1,6 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./components/reservations/MultiStep";
 import ReviewForm from "./components/reservations/review";
+import ContactInfo from "./components/reservations/contact-info";
 
 const getDate = () => {
   const now = new Date();
@@ -19,8 +20,20 @@ const state = {
   occasion: "Birthday",
   diners: 2,
   firstname: "Jane",
-  lastname: "Dpe",
+  lastname: "Doe",
   phone: "222-456-7890",
+  email: "jane@gmail.com",
+  times: [],
+  time: "17:00",
+};
+
+const invalidState = {
+  date: "09/15/2023",
+  occasion: "",
+  diners: 2,
+  firstname: "Jane",
+  lastname: "Doe",
+  phone: "",
   email: "jane@gmail.com",
   times: [],
   time: "17:00",
@@ -91,12 +104,12 @@ describe("Update times method", () => {
   it("does the date input automatically update to current day", () => {
     const { input } = setupDate();
     fireEvent.change(input, { target: { value: getDate() } });
-    expect(input.value).toBe("2023-09-30");
+    expect(input.value).toBe("2023-10-01");
   });
 
   it("should correctly set default option -- select a time", async () => {
     const { select } = setupTime();
-    expect(select.value).toBe("Select a time");
+    expect(select.value).toBe("default");
   });
 
   it("change the date", async () => {
@@ -118,5 +131,21 @@ describe("Testing available times using localStorage", () => {
     fireEvent.change(input, { target: { value: "2023-09-23" } });
     const times = localStorageMock.getItem("2023-09-23");
     expect(times).toEqual(["10:00", "11:00", "12:00"]);
+  });
+});
+
+describe("form validation", () => {
+  it("verify that Next button is disabled when page is initially loaded on start page of the booking form", () => {
+    render(<BookingForm state={invalidState} />);
+    expect(screen.getByLabelText("next-button")).toBeDisabled();
+  });
+  it("button not disabled when in contact info form is valid", () => {
+    // when contact page input is valid
+    render(<ContactInfo state={state} />);
+    expect(screen.getByLabelText("next-button")).not.toBeDisabled();
+  });
+  it("button disabled due to invalid input on contact info screen", () => {
+    render(<ContactInfo state={invalidState} />);
+    expect(screen.getByLabelText("next-button")).toBeDisabled();
   });
 });

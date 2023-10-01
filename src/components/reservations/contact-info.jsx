@@ -35,8 +35,8 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
 
   const handleEmailChange = (e) => {
     dispatch({ type: "set_email", payload: e.target.value });
-    if (e.target.value === "") {
-      setError({ ...error, email: "Email address is required" });
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(e.target.value)) {
+      setError({ ...error, email: "Invalid email address" });
     } else {
       setError({ ...error, email: null });
     }
@@ -64,12 +64,15 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
       <h2>Contact Information</h2>
       <form className="reservation-form">
         <div className="form-control">
-          <p className="label">First Name </p>
+          {/* <p className="label">First Name </p> */}
+          <label htmlFor="firstname" className="label"></label>
           <input
             type="text"
             name="firstname"
             value={state.firstname}
             id="firstname"
+            aria-label="firstname-input"
+            data-testid="firstname"
             onChange={handleFirstNameChange}
             required
           />
@@ -84,6 +87,8 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             name="lastname"
             value={state.lastname}
             onChange={handleLastNameChange}
+            aria-label="lastname-input"
+            data-testid="lastname"
             required
           />
         </div>
@@ -97,6 +102,8 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
             name="phone"
             value={state.phone}
             onChange={handlePhoneChange}
+            aria-label="phone-input"
+            data-testid="phone"
             required
           />
         </div>
@@ -106,24 +113,38 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
           <input
             type="email"
             name="email"
+            id="email"
             value={state.email}
             onChange={handleEmailChange}
+            aria-label="email-input"
+            data-testid="email"
             required
           />
         </div>
         {error.email !== null && <p className="required">{error.email}</p>}
         <div className="form-control-button">
-          <button type="button" onClick={previousPage}>
+          <button
+            type="button"
+            aria-label="back-button"
+            data-testid="back"
+            onClick={previousPage}
+          >
             Back
           </button>
           <button
             type="button"
             onClick={nextPage}
+            aria-label="next-button"
+            data-testid="next"
             disabled={
               state.firstname === "" ||
               state.lastname === "" ||
               state.email === "" ||
-              state.phone === ""
+              state.phone === "" ||
+              error.firstname ||
+              error.lastname ||
+              error.email ||
+              error.phone
             }
           >
             Next
