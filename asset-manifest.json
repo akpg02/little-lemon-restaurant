@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/little-lemon-restaurant/static/css/main.302a1208.css",
+    "main.js": "/little-lemon-restaurant/static/js/main.ea18c75f.js",
+    "static/js/787.9322e090.chunk.js": "/little-lemon-restaurant/static/js/787.9322e090.chunk.js",
+    "static/media/bruchetta.svg": "/little-lemon-restaurant/static/media/bruchetta.29ea078fea3d3120ed22.svg",
+    "static/media/restaurant-chef-B.jpg": "/little-lemon-restaurant/static/media/restaurant-chef-B.4b4c2d26b514db32e8fc.jpg",
+    "static/media/greeksalad.jpg": "/little-lemon-restaurant/static/media/greeksalad.bed423a1fab5b210e347.jpg",
+    "static/media/restauranfood.jpg": "/little-lemon-restaurant/static/media/restauranfood.e8abf5b772b6817189aa.jpg",
+    "static/media/restaurant.jpg": "/little-lemon-restaurant/static/media/restaurant.324d0f99bdf19400a0f7.jpg",
+    "static/media/Logo .svg": "/little-lemon-restaurant/static/media/Logo .f72c913c48c5334f78f2c336ec36f22b.svg",
+    "static/media/jenny.png": "/little-lemon-restaurant/static/media/jenny.ccdcea01362423e8e2bf.png",
+    "static/media/rebecca.png": "/little-lemon-restaurant/static/media/rebecca.ba5a7f9f30d58ab385d9.png",
+    "static/media/benji.png": "/little-lemon-restaurant/static/media/benji.fa4be855aa1466a1fcb3.png",
+    "static/media/bobby.png": "/little-lemon-restaurant/static/media/bobby.333854849cb34643a28e.png",
+    "index.html": "/little-lemon-restaurant/index.html",
+    "static/media/basket .svg": "/little-lemon-restaurant/static/media/basket .096e0ee1a59ac26349dcd0f4f0c56010.svg",
+    "static/media/🦆 icon _hamburger menu_.svg": "/little-lemon-restaurant/static/media/🦆 icon _hamburger menu_.0da6f67ced800ab909f6.svg",
+    "main.302a1208.css.map": "/little-lemon-restaurant/static/css/main.302a1208.css.map",
+    "main.ea18c75f.js.map": "/little-lemon-restaurant/static/js/main.ea18c75f.js.map",
+    "787.9322e090.chunk.js.map": "/little-lemon-restaurant/static/js/787.9322e090.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.302a1208.css",
+    "static/js/main.ea18c75f.js"
+  ]
+}
