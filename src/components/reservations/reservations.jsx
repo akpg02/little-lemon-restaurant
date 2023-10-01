@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./reservation.css";
 
 const getDate = () => {
@@ -13,6 +13,8 @@ const getDate = () => {
   return y + "-" + m + "-" + d;
 };
 
+const errors = { time: null, occasion: null };
+
 const Reservation = ({
   setPage,
   state,
@@ -24,6 +26,8 @@ const Reservation = ({
   const dateInputRef = useRef(null);
   const timeInputRef = useRef(null);
 
+  const [error, setError] = useState(errors);
+
   const handleDateChange = async (e) => {
     dispatch({ type: "set_date", payload: e.target.value });
     updateTimes(e.target.value);
@@ -32,11 +36,27 @@ const Reservation = ({
   };
 
   const handleTimeChange = (e) => {
-    dispatch({ type: "set_time", payload: e.target.value });
+    if (
+      e.target.value.toLowerCase() === "default" ||
+      e.target.value.length <= 0
+    ) {
+      setError({ ...error, time: "Time is required" });
+    } else {
+      setError({ ...error, time: null });
+      dispatch({ type: "set_time", payload: e.target.value });
+    }
   };
 
   const handleOccasionChange = (e) => {
-    dispatch({ type: "set_occasion", payload: e.target.value });
+    if (
+      e.target.value.toLowerCase() === "default" ||
+      e.target.value.length <= 0
+    ) {
+      setError({ ...error, occasion: "Occasion is required" });
+    } else {
+      setError({ ...error, occasion: null });
+      dispatch({ type: "set_occasion", payload: e.target.value });
+    }
   };
 
   const handleDinerChange = (e) => {
@@ -45,7 +65,7 @@ const Reservation = ({
 
   const nextPage = (e) => {
     e.preventDefault();
-    if (state.time.length > 0 && state.occasion.length > 0) {
+    if (error.time === null && error.occasion === null) {
       setPage(1);
     }
   };
@@ -86,7 +106,7 @@ const Reservation = ({
             required
             role="combobox"
           >
-            <option value="Select a time" data-testid="select-option">
+            <option value="default" data-testid="select-option">
               Select a time
             </option>
             {state.times &&
@@ -97,6 +117,7 @@ const Reservation = ({
               ))}
           </select>
         </div>
+        {error.time !== null && <p className="required">{error.time}</p>}
         <div className="form-control">
           <p className="label">Number of Guests </p>
           <input
@@ -118,16 +139,22 @@ const Reservation = ({
             defaultValue={state.occasion}
             required
           >
-            <option value="occasion">Select an occasion</option>
+            <option value="default">Select an occasion</option>
             <option value="birthday">Birthday</option>
             <option value="engagement">Engagement</option>
             <option value="anniversary">Anniversary</option>
           </select>
         </div>
+        {error.occasion !== null && (
+          <p className="required">{error.occasion}</p>
+        )}
 
-        <p className="required">Note: All fields are required</p>
         <div className="form-control-button">
-          <button type="button" onClick={nextPage}>
+          <button
+            type="button"
+            onClick={nextPage}
+            disabled={state.time === "" || state.occasion === ""}
+          >
             Next
           </button>
         </div>

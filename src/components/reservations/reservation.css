@@ -113,7 +113,8 @@ h2 {
 }
 
 .reservation-form p.required {
-  color: var(--peach);
+  color: var(--dark);
+  font-weight: 600;
   text-align: center;
   margin: 20px 0;
 }
@@ -121,6 +122,11 @@ h2 {
 .editlink {
   color: var(--peach);
   font-weight: bold;
+}
+
+button:disabled {
+  background-color: var(--light);
+  cursor: default;
 }
 
 @media (max-width: 800px) {
