@@ -64,8 +64,7 @@ const ContactInfo = ({ setPage, state, dispatch }) => {
       <h2>Contact Information</h2>
       <form className="reservation-form">
         <div className="form-control">
-          {/* <p className="label">First Name </p> */}
-          <label htmlFor="firstname" className="label"></label>
+          <p className="label">First Name </p>
           <input
             type="text"
             name="firstname"
